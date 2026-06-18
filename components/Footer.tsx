@@ -1,15 +1,45 @@
-import { navLinks, siteConfig } from "@/data/content";
+import Link from "next/link";
+import { siteConfig } from "@/data/content";
+
+const footerServices = [
+  { label: "Drain Cleaning", href: "/services/drain-cleaning" },
+  { label: "Water Heater Install", href: "/services/water-heater-install" },
+  { label: "Pipe Repair", href: "/services/pipe-repair" },
+  { label: "Furnace & Heating", href: "/services/furnace-heating" },
+  { label: "Bathroom Renovations", href: "/services/bathroom-renovations" },
+  { label: "Emergency Service", href: "/services/emergency-service" },
+];
+
+const footerNav = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "About", href: "/about" },
+  { label: "Service Area", href: "/service-area" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Reviews", href: "/reviews" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Contact", href: "/contact" },
+];
 
 export default function Footer() {
   return (
     <footer className="bg-[#0f172a] text-slate-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
+          <div className="md:col-span-1">
+            <Link href="/" className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 bg-[#1e3a5f] rounded flex items-center justify-center flex-shrink-0">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <path d="M12 2L2 7l10 5 10-5-10-5z" />
                   <path d="M2 17l10 5 10-5" />
                   <path d="M2 12l10 5 10-5" />
@@ -18,43 +48,59 @@ export default function Footer() {
               <span className="font-bold text-white text-base tracking-tight">
                 NorthPeak Plumbing & Heating
               </span>
-            </div>
-            <p className="text-sm leading-relaxed max-w-xs">
+            </Link>
+            <p className="text-sm leading-relaxed max-w-xs mb-5">
               Fredericton's trusted local plumbing and heating team. Licensed,
               insured, and ready around the clock.
             </p>
-            <div className="mt-5 text-sm">
-              <a
+            <div className="text-sm">
+              <Link
                 href={`tel:${siteConfig.phone.replace(/\D/g, "")}`}
                 className="text-white font-semibold hover:text-slate-300 transition-colors"
               >
                 {siteConfig.phone}
-              </a>
-              <div className="text-slate-500 text-xs mt-0.5">24/7 Emergency Line</div>
+              </Link>
+              <div className="text-slate-500 text-xs mt-0.5">
+                24/7 Emergency Line
+              </div>
             </div>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">
+              Services
+            </h3>
+            <ul className="space-y-2.5">
+              {footerServices.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-sm hover:text-white transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Navigation */}
           <div>
             <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">
-              Navigation
+              Company
             </h3>
             <ul className="space-y-2.5">
-              {navLinks.map((link) => (
+              {footerNav.map((link) => (
                 <li key={link.label}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-sm hover:text-white transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
-              <li>
-                <a href="#hero" className="text-sm hover:text-white transition-colors">
-                  Home
-                </a>
-              </li>
             </ul>
           </div>
 
@@ -66,12 +112,12 @@ export default function Footer() {
             <div className="space-y-3 text-sm">
               <div>{siteConfig.address}</div>
               <div>
-                <a
+                <Link
                   href={`mailto:${siteConfig.email}`}
                   className="hover:text-white transition-colors"
                 >
                   {siteConfig.email}
-                </a>
+                </Link>
               </div>
               <div className="space-y-1 text-slate-500">
                 <div>{siteConfig.hours.weekdays}</div>

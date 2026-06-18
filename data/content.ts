@@ -7,6 +7,7 @@ export const siteConfig = {
   phone: "(506) 555-0192",
   email: "info@northpeakplumbing.ca",
   address: "847 King Street, Fredericton, NB E3B 1E5",
+  url: "https://northpeakplumbing.ca",
   hours: {
     weekdays: "Mon–Fri: 7:00 AM – 6:00 PM",
     saturday: "Sat: 8:00 AM – 4:00 PM",
@@ -15,10 +16,11 @@ export const siteConfig = {
 };
 
 export const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "About", href: "#about" },
-  { label: "Emergency", href: "#contact" },
-  { label: "Contact", href: "#contact" },
+  { label: "Services", href: "/services" },
+  { label: "About", href: "/about" },
+  { label: "Reviews", href: "/reviews" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const services = [

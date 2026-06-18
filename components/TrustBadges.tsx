@@ -1,3 +1,4 @@
+import FadeIn from "@/components/shared/FadeIn";
 import { trustBadges } from "@/data/content";
 
 function TrustIcon({ type }: { type: string }) {
@@ -50,28 +51,32 @@ export default function TrustBadges() {
   return (
     <section className="py-16 bg-slate-50 border-y border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <span className="text-sm font-semibold text-[#ea580c] uppercase tracking-widest">
-            Why NorthPeak
-          </span>
-          <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-[#0f172a]">
-            Why Choose Us
-          </h2>
-        </div>
+        <FadeIn>
+          <div className="text-center mb-12">
+            <span className="text-sm font-semibold text-[#ea580c] uppercase tracking-widest">
+              Why NorthPeak
+            </span>
+            <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-[#0f172a]">
+              Why Choose Us
+            </h2>
+          </div>
+        </FadeIn>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {trustBadges.map((badge) => (
-            <div key={badge.title} className="flex flex-col items-center text-center">
-              <div className="w-14 h-14 rounded-full bg-[#1e3a5f] text-white flex items-center justify-center mb-4">
-                <TrustIcon type={badge.icon} />
+          {trustBadges.map((badge, i) => (
+            <FadeIn key={badge.title} delay={i * 80}>
+              <div className="flex flex-col items-center text-center p-5 rounded-xl transition-all duration-200 hover:-translate-y-1 hover:shadow-sm hover:bg-white">
+                <div className="w-14 h-14 rounded-full bg-[#1e3a5f] text-white flex items-center justify-center mb-4">
+                  <TrustIcon type={badge.icon} />
+                </div>
+                <h3 className="font-bold text-[#0f172a] text-base mb-2">
+                  {badge.title}
+                </h3>
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  {badge.description}
+                </p>
               </div>
-              <h3 className="font-bold text-[#0f172a] text-base mb-2">
-                {badge.title}
-              </h3>
-              <p className="text-sm text-slate-500 leading-relaxed">
-                {badge.description}
-              </p>
-            </div>
+            </FadeIn>
           ))}
         </div>
       </div>
